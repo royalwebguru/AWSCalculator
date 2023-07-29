@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Pricing Sample Calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>Pricing Sample Calculator</h1>
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header text-center">Pricing</div>
+        <div class="card-body">
+          <h6 class="bg-secondary text-white">NA PSTN (From IAD)- Minutes</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Toll Free In</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="toll_free_in" value="0.012">
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">DID In</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="did_in" value="0.003">
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">DID Out</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="did_out" value="0.0065">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">PSTN - Numbers</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Toll Free</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="toll_free" value="1.86">
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">DID</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="did" value="0.930">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">Storage - S3</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">GB/Month</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="gb_month" value="0.023">
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Recording MB per Min</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="recording_mb_per_min" value="2">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">Lambda</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Per Request*</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="per_request" value="0.00002522">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">Application - Minutes</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Application per minute</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="application_per_minute" value="0.018">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">LEX</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Per Speech Request</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="per_speech_request" value="0.004">
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Per TXT request</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="per_txt_request" value="0.00075">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header text-center">Inputs</div>
+        <div class="card-body">
+          <h6 class="bg-secondary text-white">IVR (time spent in IVR)</h6>
+          <div class="form-group align-items-center">
+            <label for="">Inbound Toll Free Mins</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="inbound_toll_free_mins-ivr" value="0">
+              <select class="form-control" id="select-inbound_toll_free_mins-ivr" onchange="handleChange(this)">
+                <option value="1">Month</option>
+                <option value="4">Week</option>
+                <option value="30">Day</option>
+                <option value="0.0833">Year</option>
+              </select>
+              <input type="text" class="form-control" id="permonth-inbound_toll_free_mins-ivr" title="Per Month" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group align-items-center">
+            <label for="">Inbound DID Mins</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="inbound_did_mins-ivr" value="6,600">
+              <select class="form-control" id="select-inbound_did_mins-ivr" onchange="handleChange(this)">
+                <option value="1">Month</option>
+                <option value="4">Week</option>
+                <option value="30">Day</option>
+                <option value="0.0833">Year</option>
+              </select>
+              <input type="text" class="form-control" id="permonth-inbound_did_mins-ivr" value="0" title="Per Month" readonly>
+            </div>
+          </div>
+          <div class="form-group align-items-center">
+            <label for="">Number of Inbound Calls</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="number_of_inbound_calls" value="6,600">
+              <select class="form-control" id="select-number_of_inbound_calls" onchange="handleChange(this)">
+                <option value="1">Month</option>
+                <option value="4">Week</option>
+                <option value="30">Day</option>
+                <option value="0.0833">Year</option>
+              </select>
+              <input type="text" class="form-control" id="permonth-number_of_inbound_calls" value="0" title="Per Month" readonly>
+            </div>
+          </div>
+          <div class="form-group align-items-center">
+            <label for="">Lambda Invocations per Call</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="lambda_invocations_per_call" value="3">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">ACD (when talking to agent or in queue)</h6>
+          <div class="form-group align-items-center">
+            <label for="">Inbound Toll Free Mins</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="inbound_toll_free_mins-acd" value="0">
+              <select class="form-control" id="select-inbound_toll_free_mins-acd" onchange="handleChange(this)">
+                <option value="1">Month</option>
+                <option value="4">Week</option>
+                <option value="30">Day</option>
+                <option value="0.0833">Year</option>
+              </select>
+              <input type="text" class="form-control" id="permonth-inbound_toll_free_mins-acd" value="0" title="Per Month" readonly>
+            </div>
+          </div>
+          <div class="form-group align-items-center">
+            <label for="">Inbound DID Mins</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="inbound_did_mins-acd" value="17,400">
+              <select class="form-control" id="select-inbound_did_mins-acd" onchange="handleChange(this)">
+                <option value="1">Month</option>
+                <option value="4">Week</option>
+                <option value="30">Day</option>
+                <option value="0.0833">Year</option>
+              </select>
+              <input type="text" class="form-control" id="permonth-inbound_did_mins-acd" value="0" title="Per Month" readonly>
+            </div>
+          </div>
+          <div class="form-group align-items-center">
+            <label for="">Outbound Mins</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="outbound_mins" value="0">
+              <select class="form-control" id="select-outbound_mins" onchange="handleChange(this)">
+                <option value="1">Month</option>
+                <option value="4">Week</option>
+                <option value="30">Day</option>
+                <option value="0.0833">Year</option>
+              </select>
+              <input type="text" class="form-control" id="permonth-outbound_mins" value="0" title="Per Month" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">% of Mins recorded</label>
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">%</span>
+              </div>
+              <input type="text" class="form-control" id="of_mins_recorded" value="100">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">PSTN</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">QTY Toll-Free Numbers</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="qty_toll_free_numbers" value="0">
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">QTY DID Numbers</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="qty_did_numbers" value="1">
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">LEX</h6>
+          <div class="form-group align-items-center">
+            <label for="">Avg. Voice Utterances Per Call</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="avg_voice_utterances_per_call" value="0">
+              <input type="text" class="form-control" id="permonth-avg_voice_utterances_per_call" value="0" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-header text-center">Monthly Charges</div>
+        <div class="card-body">
+          <h6 class="bg-secondary text-white">Minute Usage Summary</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Total IVR Mins</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="total_ivr_mins" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Total ACD Mins</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="total_acd_mins" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Total Minutes</label>
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control" id="total_minutes" value="0" readonly>
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">Amazon Connect Service Charge</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Application</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="application" value="0" readonly>
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">Telephony Charges</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Toll Free Numbers</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="toll_free_numbers" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">DID Numbers</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="did_numbers" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Toll Free In</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="toll_free_in-total" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">DID In</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="did_in-total" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">DID Out</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="did_out-total" value="" readonly>
+            </div>
+          </div>
+          <h6 class="bg-secondary text-white">Ancillary Service Charges</h6>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Recording Storage (S3)</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="recording_storage" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Lambda Functions</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="lambda_functions" value="0" readonly>
+            </div>
+          </div>
+          <div class="form-group form-inline align-items-center">
+            <label for="">Lex Costs</label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="lex_costs" value="0" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="form-group form-inline align-items-center">
+            <label for=""><b>Total Monthly</b></label>
+            <div class="input-group input-group-sm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+              </div>
+              <input type="text" class="form-control" id="total_monthly" value="0" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+
+  </div>
+</div>
+<script src="./js/main.js"></script>
+
+</body>
+</html>

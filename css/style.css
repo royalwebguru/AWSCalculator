@@ -1,0 +1,16 @@
+.form-group.form-inline label {
+    width: 90px;
+    margin-right: 20px;
+}
+
+.card-footer {
+    background: #92f3a8;
+}
+
+.form-inline .input-group {
+    min-width: 110px;
+}
+
+h6 {
+    padding: 3px;
+}
